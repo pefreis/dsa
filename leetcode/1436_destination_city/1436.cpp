@@ -23,5 +23,7 @@ public:
                 return p[1];
             }
         }
+
+        return "";
     }
 };
