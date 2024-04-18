@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <stack>
 #include <vector>
@@ -21,22 +22,28 @@ class Solution
 public:
     vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
     {
-        vector<int> res = {};
+        stack<int> s = {};
+        map<int, int> m = {};
+
+        for (int i = 0; i < nums2.size(); i++)
+        {
+            while (!s.empty() && s.top() < nums2[i])
+            {
+                m[s.top()] = nums2[i];
+                s.pop();
+            }
+            s.push(nums2[i]);
+        }
+
         for (int i = 0; i < nums1.size(); i++)
         {
-            int j = 0;
-            while (nums2[j] != nums1[i])
-                j++;
-
-            while (j < nums2.size() && nums2[j] <= nums1[i])
-                j++;
-
-            if (j == nums2.size())
-                res.push_back(-1);
+            if (m.find(nums1[i]) == m.end())
+                nums1[i] = -1;
             else
-                res.push_back(nums2[j]);
+                nums1[i] = m[nums1[i]];
         }
-        return res;
+
+        return nums1;
     }
 };
 
