@@ -1,8 +1,9 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-class Solution
+class SolutionBestMemory
 {
 public:
     string removeKdigits(string num, int k)
@@ -38,13 +39,47 @@ public:
     }
 };
 
+class SolutionBestTime
+{
+public:
+    string removeKdigits(string num, int k)
+    {
+        vector<char> chars = {};
+        for (char c : num)
+        {
+            while (!chars.empty() && chars.back() > c && k > 0)
+            {
+                chars.pop_back();
+                k--;
+            }
+
+            if (!chars.empty() || c != '0')
+                chars.push_back(c);
+        }
+
+        while (!chars.empty() && k > 0)
+        {
+            chars.pop_back();
+            k--;
+        }
+
+        if (chars.empty())
+            return string(1, '0');
+
+        string res = "";
+        for (char c : chars)
+            res += c;
+        return res;
+    }
+};
+
 int main()
 {
     string num;
     int k;
     cin >> num;
     cin >> k;
-    Solution sol = Solution();
-    cout << sol.removeKdigits(num, k) << endl;
+    cout << SolutionBestMemory().removeKdigits(num, k) << endl;
+    cout << SolutionBestTime().removeKdigits(num, k) << endl;
     return 0;
 }
