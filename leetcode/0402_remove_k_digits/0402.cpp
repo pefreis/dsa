@@ -8,7 +8,7 @@ public:
     string removeKdigits(string num, int k)
     {
         int i = 1;
-        while (k > 0 && num.size() > 0)
+        while (k > 0 && num.size() > 1)
         {
             if (i < num.size() && num[i] >= num[i - 1])
             {
@@ -28,10 +28,11 @@ public:
 
             num.erase(i - 1, 1);
             k--;
-            i--;
+            if (i > 1)
+                i--;
         }
 
-        if (empty(num))
+        if (num.length() == 0 || (num.length() == 1 && k > 0))
             return string(1, '0');
         return num;
     }
