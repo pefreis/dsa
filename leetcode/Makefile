@@ -5,7 +5,7 @@ clean:
 .PHONY: build.cpp
 build.cpp:
 	@mkdir -p ./.bin
-	@g++ -std=c++20 -o ./.bin/$(TARGET) $(shell find $(TARGET)*/$(TARGET).cpp)
+	@g++ -std=c++20 -I ../utils -o ./.bin/$(TARGET) $(shell find $(TARGET)*/$(TARGET).cpp)
 
 .PHONY: run.cpp
 run.cpp:

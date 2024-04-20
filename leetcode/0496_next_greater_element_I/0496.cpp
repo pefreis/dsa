@@ -3,19 +3,9 @@
 #include <sstream>
 #include <stack>
 #include <vector>
+#include "utils.h"
 
 using namespace std;
-
-template <class T>
-void readVec(vector<T> &out)
-{
-    string line;
-    getline(cin, line);
-    istringstream iss(line);
-    T val;
-    while (iss >> val)
-        out.push_back(val);
-}
 
 class Solution
 {
