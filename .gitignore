@@ -22,4 +22,5 @@
 go.work
 
 # Python
+.pytest_cache
 __pycache__
