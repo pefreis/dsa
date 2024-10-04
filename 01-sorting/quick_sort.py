@@ -1,4 +1,4 @@
-def quick_sort(arr: list) -> list:
+def basic_quick_sort(arr: list) -> list:
     if len(arr) <= 1:
         return arr
 
@@ -13,4 +13,4 @@ def quick_sort(arr: list) -> list:
         else:
             g.append(n)
 
-    return quick_sort(l) + e + quick_sort(g)
+    return basic_quick_sort(l) + e + basic_quick_sort(g)
